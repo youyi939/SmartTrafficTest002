@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/cj_sat"
+        android:title="卫星视图"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/cj_nav"
+        android:title="导航视图"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/cj_night"
+        android:title="导航视图(Night)"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/cj_normal"
+        android:title="正常视图"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/cj_bus"
+        android:title="交通视图"
+        app:showAsAction="never"
+        />
+    <item
+        android:id="@+id/cj_now"
+        android:title="实时路况"
+        app:showAsAction="never"
+        />
+</menu>
