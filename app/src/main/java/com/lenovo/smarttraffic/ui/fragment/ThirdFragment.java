@@ -21,7 +21,6 @@ public class ThirdFragment extends BaseFragment {
         SystemClock.sleep(1000);/*模拟请求服务器的延时过程*/
         return null;/*加载失败*/
     }
-
     @Override
     public void onClick(View view) {
 

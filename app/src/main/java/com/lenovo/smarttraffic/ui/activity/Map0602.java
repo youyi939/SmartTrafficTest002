@@ -15,14 +15,12 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.LatLonPoint;
-import com.amap.api.services.route.DriveRouteResult;
-import com.amap.api.services.route.RouteSearch;
 import com.lenovo.smarttraffic.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Map0602 extends AppCompatActivity  {
+public class Map0602 extends AppCompatActivity   {
     private Spinner start;
     private Spinner end;
     MapView mMapView = null;
@@ -31,12 +29,10 @@ public class Map0602 extends AppCompatActivity  {
     private Button button;
     private LatLonPoint mStartPoint;
     private LatLonPoint mEndPoint;
-    private RouteSearch routeSearch;
     private List<Site> sites = new ArrayList<>();
 
-    private RouteSearch mRouteSearch;
-    private DriveRouteResult mDriveRouteResult;
-    private final int ROUTE_TYPE_DRIVE = 2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +47,11 @@ public class Map0602 extends AppCompatActivity  {
         uiSettings = aMap.getUiSettings();
         uiSettings.setLogoBottomMargin(100);
         uiSettings.setAllGesturesEnabled(true);             //支持所有的手势
+
+
+
+
+
 
         LatLng latLng = new LatLng(parke.getLatitude(),parke.getLongitude());
         dingdian(latLng);
@@ -70,6 +71,7 @@ public class Map0602 extends AppCompatActivity  {
 
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,47 +79,16 @@ public class Map0602 extends AppCompatActivity  {
                 Site siteB = (Site) start.getSelectedItem();
                 mStartPoint = new LatLonPoint(siteA.getLatitude(),siteA.getLongitude());
                 mEndPoint = new LatLonPoint(siteB.getLatitude(),siteB.getLongitude());
-                setfromandtoMarker();
-                searchRouteResult(ROUTE_TYPE_DRIVE, RouteSearch.DrivingDefault);
-
 
             }
         });
 
-
-
-
     }
     private void dingdian(LatLng latLng){
         aMap.addMarker(new MarkerOptions().position(latLng).icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker_one)));
-
-    }
-
-    public void searchRouteResult(int routeType, int mode) {
-
-
-        final RouteSearch.FromAndTo fromAndTo = new RouteSearch.FromAndTo(
-                mStartPoint, mEndPoint);
-        if (routeType == ROUTE_TYPE_DRIVE) {// 驾车路径规划
-            RouteSearch.DriveRouteQuery query = new RouteSearch.DriveRouteQuery(fromAndTo, mode, null,
-                    null, "");// 第一个参数表示路径规划的起点和终点，第二个参数表示驾车模式，第三个参数表示途经点，第四个参数表示避让区域，第五个参数表示避让道路
-            mRouteSearch.calculateDriveRouteAsyn(query);// 异步路径规划驾车模式查询
-        }
-    }
-
-    private void setfromandtoMarker() {
-        aMap.addMarker(new MarkerOptions()
-                .position(convertToLatLng(mStartPoint))
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.start)));
-        aMap.addMarker(new MarkerOptions()
-                .position(convertToLatLng(mEndPoint))
-                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.end)));
     }
 
 
-    public static LatLng convertToLatLng(LatLonPoint latLonPoint) {
-        return new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
-    }
 
 
 }
